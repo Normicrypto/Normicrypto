@@ -1,0 +1,88 @@
+{
+  "project": "noemi-platform-cap",
+  "environment": "production",
+  "aws": {
+    "region": "us-east-1",
+    "accessKeyId": "YOUR_ACCESS_KEY_ID_HERE",
+    "secretAccessKey": "YOUR_SECRET_ACCESS_KEY_HERE"
+  },
+  "repositories": [
+    {
+      "name": "backend-api",
+      "type": "git",
+      "url": "https://github.com/YourOrg/noemi-backend.git",
+      "branch": "main"
+    },
+    {
+      "name": "frontend-ui",
+      "type": "git",
+      "url": "https://github.com/YourOrg/noemi-frontend.git",
+      "branch": "main"
+    }
+  ],
+  "terminus": {
+    "service": "aws",
+    "tools": [
+      {
+        "name": "code-deploy",
+        "enabled": true
+      },
+      {
+        "name": "cloudwatch",
+        "enabled": true
+      }
+    ]
+  }
+}// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract NoemiPlatformCAP is ERC20, Ownable {
+    // Project metadata
+    string public projectName = "Noemi Platform CAP";
+    string public mission = "To give users full control over their digital freedom and privacy.";
+    string public coreProduct = "Integrated VPN for Facebook";
+    uint256 public assetValue = 162_000_000_000 ether; // hypothetical representation in wei
+
+    string[] public goals;
+    string[] public features;
+
+    constructor() ERC20("Noemi Platform CAP", "NPC") {
+        // Mint initial supply to deployer (adjust as needed)
+        _mint(msg.sender, 1_000_000_000 * 10 ** decimals());
+
+        // Example features of the VPN product
+        features.push("Bypasses censorship");
+        features.push("Protects user data");
+        features.push("Decentralized infrastructure");
+        features.push("User anonymity and freedom");
+
+        // Example project goals
+        goals.push("Secure exchange listings");
+        goals.push("Launch VPN application");
+        goals.push("Build strategic partnerships");
+        goals.push("Expand user base");
+    }
+
+    // Add a new goal (only owner)
+    function addGoal(string memory newGoal) public onlyOwner {
+        goals.push(newGoal);
+    }
+
+    // Add a new feature (only owner)
+    function addFeature(string memory newFeature) public onlyOwner {
+        features.push(newFeature);
+    }
+
+    // Get all features
+    function getFeatures() public view returns (string[] memory) {
+        return features;
+    }
+
+    // Get all goals
+    function getGoals() public view returns (string[] memory) {
+        return goals;
+    }
+}https://github.com/YourOrg/noemi-backend.githttps://github.com/YourOrg/noemi-frontend.git
